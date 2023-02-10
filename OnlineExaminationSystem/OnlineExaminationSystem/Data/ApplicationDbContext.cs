@@ -9,5 +9,6 @@ namespace OnlineExaminationSystem.Data
             : base(options)
         {
         }
+        public DbSet<AppUser> AppUsers { get; set; }    
     }
 }
