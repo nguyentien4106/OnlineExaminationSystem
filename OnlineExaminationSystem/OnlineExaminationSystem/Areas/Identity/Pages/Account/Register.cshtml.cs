@@ -19,6 +19,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.WebUtilities;
 using Microsoft.Extensions.Logging;
 using OnlineExaminationSystem.Data;
+using OnlineExaminationSystem.Enums;
 
 namespace OnlineExaminationSystem.Areas.Identity.Pages.Account
 {
@@ -30,6 +31,7 @@ namespace OnlineExaminationSystem.Areas.Identity.Pages.Account
         private readonly IUserEmailStore<AppUser> _emailStore;
         private readonly ILogger<RegisterModel> _logger;
         private readonly IEmailSender _emailSender;
+        
 
         public RegisterModel(
             UserManager<AppUser> userManager,
@@ -99,20 +101,14 @@ namespace OnlineExaminationSystem.Areas.Identity.Pages.Account
             [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
             public string ConfirmPassword { get; set; }
 
-            [Display(Name = "First Name")]
-            [Required]
-            public string FirstName { get; set; }
-
-            [Display(Name = "Last Name")]
-            [Required]
-            public string LastName { get; set; }
-
-            [Display(Name = "Date of Birth")]
-            [Required]
+            [DataType(DataType.Date)]
             public DateTime DOB { get; set; }
 
-            [Required]
             public int Grade { get; set; }
+
+            public string FirstName { get; set; } = string.Empty;
+
+            public string LastName { get; set; } = string.Empty;
         }
 
 
@@ -128,7 +124,23 @@ namespace OnlineExaminationSystem.Areas.Identity.Pages.Account
             ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
             if (ModelState.IsValid)
             {
-                var user = CreateUser();
+                var user = CreateUser(Input);
+                if (user.Email == "super@admin") {
+                    await _userStore.SetUserNameAsync(user, Input.Email, CancellationToken.None);
+                    await _emailStore.SetEmailAsync(user, Input.Email, CancellationToken.None);
+                    var result1 = await _userManager.CreateAsync(user, Input.Password);
+
+                    if (result1.Succeeded)
+                    {
+                        _logger.LogInformation("User created a new account with password.");
+
+                        await _signInManager.SignInAsync(user, isPersistent: false);
+                        await _userManager.AddToRoleAsync(user, Roles.Admin.ToString());
+                        await _userManager.AddToRoleAsync(user, Roles.Student.ToString());
+                        await _userManager.AddToRoleAsync(user, Roles.Teacher.ToString());
+                        return LocalRedirect(returnUrl);
+                    }
+                }
 
                 await _userStore.SetUserNameAsync(user, Input.Email, CancellationToken.None);
                 await _emailStore.SetEmailAsync(user, Input.Email, CancellationToken.None);
@@ -139,6 +151,7 @@ namespace OnlineExaminationSystem.Areas.Identity.Pages.Account
                     _logger.LogInformation("User created a new account with password.");
 
                     await _signInManager.SignInAsync(user, isPersistent: false);
+                    await _userManager.AddToRoleAsync(user, Roles.Student.ToString());
                     return LocalRedirect(returnUrl);
                 }
                 foreach (var error in result.Errors)
@@ -151,11 +164,18 @@ namespace OnlineExaminationSystem.Areas.Identity.Pages.Account
             return Page();
         }
 
-        private AppUser CreateUser()
+        private AppUser CreateUser(InputModel input)
         {
             try
             {
-                return Activator.CreateInstance<AppUser>();
+                return new AppUser
+                {
+                    FirstName = input.FirstName,
+                    LastName = input.LastName,
+                    Grade = input.Grade,
+                    Email = input.Email,
+                    DOB = input.DOB
+                };
             }
             catch
             {

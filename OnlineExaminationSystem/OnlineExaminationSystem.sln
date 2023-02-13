@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.4.33213.308
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OnlineExaminationSystem", "OnlineExaminationSystem\OnlineExaminationSystem.csproj", "{D48B0BB5-2A5C-4835-970B-0BAB55133805}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OnlineExaminationSystem", "OnlineExaminationSystem\OnlineExaminationSystem.csproj", "{D48B0BB5-2A5C-4835-970B-0BAB55133805}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

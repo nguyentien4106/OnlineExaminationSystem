@@ -1,6 +1,11 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
+using OnlineExaminationSystem.Areas.Admin.Service;
+using OnlineExaminationSystem.Areas.Admin.Service.Implement;
 using OnlineExaminationSystem.Data;
+using OnlineExaminationSystem.Data.Model;
+using OnlineExaminationSystem.Extensions;
 using System;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -12,15 +17,21 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
 builder.Services.AddDefaultIdentity<AppUser>(options => options.SignIn.RequireConfirmedAccount = true)
+    .AddRoles<IdentityRole>()
+    .AddDefaultUI()
+    .AddDefaultTokenProviders()
     .AddEntityFrameworkStores<ApplicationDbContext>();
+
 builder.Services.AddControllersWithViews();
 
+builder.Services.AddScoped<IQuestionService, QuestionService>();
 
 var app = builder.Build();
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
     app.UseMigrationsEndPoint();
+    _ = app.SeedRoles();
 }
 else
 {
@@ -40,6 +51,11 @@ app.UseAuthorization();
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
+
+app.MapAreaControllerRoute(
+    name: "Admin",
+    areaName: "Admin",
+    pattern: "Admin/{controller=HomeAdmin}/{action=Index}/{id?}");
 app.MapRazorPages();
 
 app.Run();
