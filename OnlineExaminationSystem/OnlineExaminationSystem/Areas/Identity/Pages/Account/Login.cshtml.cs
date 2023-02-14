@@ -118,25 +118,35 @@ namespace OnlineExaminationSystem.Areas.Identity.Pages.Account
                 if (result.Succeeded)
                 {
                     var user = await _userManager.FindByEmailAsync(Input.Email);
+                    
                     if (await _userManager.IsInRoleAsync(user, "Admin"))
                     {
                         return Redirect("/Admin/HomeAdmin/Index");
 
                     }
 
+                    if (await _userManager.IsInRoleAsync(user, "Teacher"))
+                    {
+                        return Redirect("/Teacher/HomeTeacher/Index");
+
+                    }
 
                     _logger.LogInformation("User logged in.");
+
                     return LocalRedirect(returnUrl);
                 }
+
                 if (result.RequiresTwoFactor)
                 {
                     return RedirectToPage("./LoginWith2fa", new { ReturnUrl = returnUrl, RememberMe = Input.RememberMe });
                 }
+
                 if (result.IsLockedOut)
                 {
                     _logger.LogWarning("User account locked out.");
                     return RedirectToPage("./Lockout");
                 }
+
                 else
                 {
                     ModelState.AddModelError(string.Empty, "Invalid login attempt.");
