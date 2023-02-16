@@ -1,0 +1,40 @@
+﻿@using OnlineExaminationSystem.Common.Model
+@*
+*@
+@model List<UserModel>
+@{
+}
+<h1>Manage User Page</h1></>
+
+<div>
+    <a class="btn btn-primary" href="/Admin/ManageUser/Create">Create</a>
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">First</th>
+                <th scope="col">Last</th>
+                <th scope="col">Email</th>
+                <th scope="col">Phone Number</th>
+                <th scope="col">Roles</th>
+            </tr>
+        </thead>
+        <tbody>
+            @{
+                var index = 1;
+
+                foreach (var user in Model)
+                {
+                    <tr>
+                        <th>@index</th>
+                        <th>@user.FirstName</th>
+                        <th>@user.LastName</th>
+                        <th>@user.Email</th>
+                        <th>@user.PhoneNumber</th>
+                        <th>@string.Join(", ", user.Roles)</th>
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+</div>

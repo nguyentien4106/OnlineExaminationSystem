@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc.Razor;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using OnlineExaminationSystem.Areas.Admin.Service;
@@ -24,8 +25,15 @@ builder.Services.AddDefaultIdentity<AppUser>(options => options.SignIn.RequireCo
 
 builder.Services.AddControllersWithViews();
 
-builder.Services.AddScoped<IQuestionService, QuestionService>();
+builder.Services.AddServices();
 
+//builder.Services.Configure<RazorViewEngineOptions>(options =>
+//{
+//    options.AreaViewLocationFormats.Clear();
+//    options.AreaViewLocationFormats.Add("/Admin/Views/{1}/{0}.cshtml");
+//    options.AreaViewLocationFormats.Add("/Admin/Views/Shared/{0}.cshtml");
+//    options.AreaViewLocationFormats.Add("/Views/Shared/{0}.cshtml");
+//});
 var app = builder.Build();
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
@@ -47,6 +55,10 @@ app.UseRouting();
 
 app.UseAuthentication();
 app.UseAuthorization();
+
+app.MapControllerRoute(
+    name: "Area",
+    pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}");
 
 app.MapControllerRoute(
     name: "default",

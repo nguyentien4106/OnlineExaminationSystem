@@ -254,7 +254,7 @@ namespace OnlineExaminationSystem.Migrations
 
                     b.HasIndex("QuestionId");
 
-                    b.ToTable("Answer");
+                    b.ToTable("Answer", (string)null);
                 });
 
             modelBuilder.Entity("OnlineExaminationSystem.Data.Model.Question", b =>
@@ -277,7 +277,7 @@ namespace OnlineExaminationSystem.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Questions");
+                    b.ToTable("Questions", (string)null);
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

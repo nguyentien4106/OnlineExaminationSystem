@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using OnlineExaminationSystem.Data.Model;
+using OnlineExaminationSystem.Common.Model;
 
 namespace OnlineExaminationSystem.Data
 {
@@ -13,5 +14,7 @@ namespace OnlineExaminationSystem.Data
         }
 
         public DbSet<Question> Questions { get; set; }
+
+        public DbSet<OnlineExaminationSystem.Common.Model.UserModel> UserModel { get; set; }
     }
 }
