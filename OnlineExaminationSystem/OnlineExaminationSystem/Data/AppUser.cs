@@ -7,16 +7,16 @@ namespace OnlineExaminationSystem.Data
     {
         [PersonalData]
 
-        public string FirstName { get; set; }
+        public string? FirstName { get; set; }
 
         [PersonalData]
-        public string LastName { get; set; }
+        public string? LastName { get; set; }
 
         [PersonalData]
-        public DateTime DOB { get; set; }
+        public DateTime? DOB { get; set; }
 
         [PersonalData]
-        public int Grade { get; set; }
+        public int? Grade { get; set; }
 
     }
 }

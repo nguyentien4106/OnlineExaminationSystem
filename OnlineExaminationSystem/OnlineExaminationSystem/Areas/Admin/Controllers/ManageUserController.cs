@@ -1,95 +1,138 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using OnlineExaminationSystem.Areas.Admin.Service;
 using OnlineExaminationSystem.Common.Constant;
 using OnlineExaminationSystem.Common.Model;
+using OnlineExaminationSystem.Common.Model.DTO;
+using OnlineExaminationSystem.Data;
 
-namespace OnlineExaminationSystem.Areas.Admin.Controllers
+namespace OnlineExaminationSystem.Controllers
 {
     [Area(ViewResources.Admin)]
     public class ManageUserController : Controller
     {
-        private readonly IManageUserService _userManage;
+        private readonly IManageUserService _service;
 
-        public ManageUserController(IManageUserService userManage)
+        public ManageUserController(IManageUserService service)
         {
-            _userManage = userManage;
+            _service = service;
         }
 
-        // GET: ManageUserController
-        public ActionResult Index()
+        // GET: ManageUser
+        public IActionResult Index()
         {
-            var users = _userManage.GetAllUsers();
-
-            return View(users);
+            return View(_service.GetAllUsers());
         }
 
-        // GET: ManageUserController/Details/5
-        public ActionResult Details(int id)
+        // GET: ManageUser/Details/5
+        public async Task<IActionResult> Details(string id)
+        {
+            var user =  await _service.GetUser(id);
+
+            if(user == null)
+            {
+                return NotFound();
+            }
+
+            return View(user);
+        }
+
+        // GET: ManageUser/Create
+        public IActionResult Create()
         {
             return View();
         }
 
-        // GET: ManageUserController/Create
-        public ActionResult Create()
-        {
-            return View();
-        }
-
-        // POST: ManageUserController/Create
+        // POST: ManageUser/Create
+        // To protect from overposting attacks, enable the specific properties you want to bind to.
+        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([FromForm] UserModel model)
+        public async Task<IActionResult> Create([Bind("Email,Password,Roles")] UserModel userModel)
         {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
+
+            await _service.CreateUser(userModel);
+            return RedirectToAction(nameof(Index));
+            
         }
 
-        // GET: ManageUserController/Edit/5
-        public ActionResult Edit(int id)
+        //GET: ManageUser/Edit/5
+        public async Task<IActionResult> Edit(string id)
         {
-            return View();
+            if (id == null )
+            {
+                return NotFound();
+            }
+
+            var userModel = await _service.GetUser(id);
+            if (userModel == null)
+            {
+                return NotFound();
+            }
+            return View(userModel);
         }
 
-        // POST: ManageUserController/Edit/5
+        // POST: ManageUser/Edit/5
+        // To protect from overposting attacks, enable the specific properties you want to bind to.
+        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
+        public async Task<IActionResult> Edit(string id, [Bind("FirstName,LastName,Email,PhoneNumber,Roles")] UserDTO user)
         {
+
             try
             {
-                return RedirectToAction(nameof(Index));
+                await _service.UpdateUser(id, user);
             }
-            catch
+            catch (DbUpdateConcurrencyException)
             {
-                return View();
+                return View(user);
+
             }
+            return RedirectToAction(nameof(Index));
         }
 
-        // GET: ManageUserController/Delete/5
-        public ActionResult Delete(int id)
+        // GET: ManageUser/Delete/5
+        public async Task<Result> Delete(string id)
         {
-            return View();
+            if (id == null)
+            {
+                return new Result("Id not found");
+            }
+
+            var user = await _service.DeleteUser(id);
+
+            if (user == null)
+            {
+                return new Result("User not found");
+            }
+
+            return Result.Success;
+
         }
 
-        // POST: ManageUserController/Delete/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
-        {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
-        }
+        //// POST: ManageUser/Delete/5
+        //[HttpPost, ActionName("Delete")]
+        //[ValidateAntiForgeryToken]
+        //public async Task<IActionResult> DeleteConfirmed(string id)
+        //{
+        //    if (_context.UserModel == null)
+        //    {
+        //        return Problem("Entity set 'ApplicationDbContext.UserModel'  is null.");
+        //    }
+        //    var userModel = await _context.UserModel.FindAsync(id);
+        //    if (userModel != null)
+        //    {
+        //        _context.UserModel.Remove(userModel);
+        //    }
+
+        //    await _context.SaveChangesAsync();
+        //    return RedirectToAction(nameof(Index));
+        //}
+
+        //private bool UserModelExists(string id)
+        //{
+        //    return _context.UserModel.Any(e => e.Id == id);
+        //}
     }
 }

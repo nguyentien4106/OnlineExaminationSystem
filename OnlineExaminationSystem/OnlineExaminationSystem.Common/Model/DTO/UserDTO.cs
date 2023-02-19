@@ -4,11 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace OnlineExaminationSystem.Common.Model
+namespace OnlineExaminationSystem.Common.Model.DTO
 {
-    public  class UserModel
+    public class UserDTO
     {
-        public string Id { get; set; }
+        public string? Id { get; set; }
 
         public string? FirstName { get; set; }
 
@@ -25,5 +25,7 @@ namespace OnlineExaminationSystem.Common.Model
         public string? ConfirmPassword { get; set; }
 
         public DateTime? DOB { get; set; }
+
+        public int? Grade { get; set; }
     }
 }

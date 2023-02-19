@@ -16,11 +16,11 @@ namespace OnlineExaminationSystem.Extensions
             {
                 var userManager = services.GetRequiredService<UserManager<AppUser>>();
                 var roleManager = services.GetRequiredService<RoleManager<IdentityRole>>();
-                await Seed.SeedRoles(userManager, roleManager);
+                await Seed.SeedRoles(roleManager);
+                await Seed.SeedUsers(userManager);
             }
             catch (Exception ex)
             {
-
             }
 
             return app;

@@ -1,13 +1,7 @@
 using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Mvc.Razor;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.DependencyInjection;
-using OnlineExaminationSystem.Areas.Admin.Service;
-using OnlineExaminationSystem.Areas.Admin.Service.Implement;
 using OnlineExaminationSystem.Data;
-using OnlineExaminationSystem.Data.Model;
 using OnlineExaminationSystem.Extensions;
-using System;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -17,7 +11,7 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlServer(connectionString));
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
-builder.Services.AddDefaultIdentity<AppUser>(options => options.SignIn.RequireConfirmedAccount = true)
+builder.Services.AddDefaultIdentity<AppUser>(options => options.SignIn.RequireConfirmedAccount = false)
     .AddRoles<IdentityRole>()
     .AddDefaultUI()
     .AddDefaultTokenProviders()
@@ -27,13 +21,6 @@ builder.Services.AddControllersWithViews();
 
 builder.Services.AddServices();
 
-//builder.Services.Configure<RazorViewEngineOptions>(options =>
-//{
-//    options.AreaViewLocationFormats.Clear();
-//    options.AreaViewLocationFormats.Add("/Admin/Views/{1}/{0}.cshtml");
-//    options.AreaViewLocationFormats.Add("/Admin/Views/Shared/{0}.cshtml");
-//    options.AreaViewLocationFormats.Add("/Views/Shared/{0}.cshtml");
-//});
 var app = builder.Build();
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())

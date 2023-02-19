@@ -13,8 +13,5 @@ namespace OnlineExaminationSystem.Data
         {
         }
 
-        public DbSet<Question> Questions { get; set; }
-
-        public DbSet<OnlineExaminationSystem.Common.Model.UserModel> UserModel { get; set; }
     }
 }

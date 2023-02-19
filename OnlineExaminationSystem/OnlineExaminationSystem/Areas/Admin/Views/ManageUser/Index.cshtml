@@ -1,40 +1,65 @@
-﻿@using OnlineExaminationSystem.Common.Model
-@*
-*@
-@model List<UserModel>
+﻿@model IEnumerable<OnlineExaminationSystem.Common.Model.UserModel>
+
 @{
+    ViewData["Title"] = "Index";
 }
-<h1>Manage User Page</h1></>
 
-<div>
-    <a class="btn btn-primary" href="/Admin/ManageUser/Create">Create</a>
-    <table class="table">
-        <thead>
-            <tr>
-                <th scope="col">#</th>
-                <th scope="col">First</th>
-                <th scope="col">Last</th>
-                <th scope="col">Email</th>
-                <th scope="col">Phone Number</th>
-                <th scope="col">Roles</th>
-            </tr>
-        </thead>
-        <tbody>
-            @{
-                var index = 1;
+<h1>Index</h1>
 
-                foreach (var user in Model)
-                {
-                    <tr>
-                        <th>@index</th>
-                        <th>@user.FirstName</th>
-                        <th>@user.LastName</th>
-                        <th>@user.Email</th>
-                        <th>@user.PhoneNumber</th>
-                        <th>@string.Join(", ", user.Roles)</th>
-                    </tr>
-                }
-            }
-        </tbody>
-    </table>
-</div>
+<p>
+    <a class="btn btn-primary" asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.FirstName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LastName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Email)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PhoneNumber)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Roles)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.FirstName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LastName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PhoneNumber)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Roles)
+            </td>
+            <td>
+                <a class="btn btn-info" asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                <a class="btn btn-primary" asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                <button class="btn btn-danger btn-delete-user" user-id="@item.Id">Delete</button>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+@section Scripts{
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/manageUser/index.js" asp-append-version="true"></script>
+}
+

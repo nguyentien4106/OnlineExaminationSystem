@@ -2,24 +2,14 @@
 // The .NET Foundation licenses this file to you under the MIT license.
 #nullable disable
 
-using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Text.Encodings.Web;
-using System.Threading;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authentication;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.AspNetCore.WebUtilities;
-using Microsoft.Extensions.Logging;
 using OnlineExaminationSystem.Data;
 using OnlineExaminationSystem.Enums;
+using System.ComponentModel.DataAnnotations;
 
 namespace OnlineExaminationSystem.Areas.Identity.Pages.Account
 {
@@ -31,7 +21,6 @@ namespace OnlineExaminationSystem.Areas.Identity.Pages.Account
         private readonly IUserEmailStore<AppUser> _emailStore;
         private readonly ILogger<RegisterModel> _logger;
         private readonly IEmailSender _emailSender;
-        
 
         public RegisterModel(
             UserManager<AppUser> userManager,
@@ -111,7 +100,6 @@ namespace OnlineExaminationSystem.Areas.Identity.Pages.Account
             public string LastName { get; set; } = string.Empty;
         }
 
-
         public async Task OnGetAsync(string returnUrl = null)
         {
             ReturnUrl = returnUrl;
@@ -125,7 +113,8 @@ namespace OnlineExaminationSystem.Areas.Identity.Pages.Account
             if (ModelState.IsValid)
             {
                 var user = CreateUser(Input);
-                if (user.Email == "super@admin") {
+                if (user.Email == "super@admin")
+                {
                     await _userStore.SetUserNameAsync(user, Input.Email, CancellationToken.None);
                     await _emailStore.SetEmailAsync(user, Input.Email, CancellationToken.None);
                     var result1 = await _userManager.CreateAsync(user, Input.Password);
