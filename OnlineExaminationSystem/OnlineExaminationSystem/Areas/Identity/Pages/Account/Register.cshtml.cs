@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using OnlineExaminationSystem.Data;
-using OnlineExaminationSystem.Enums;
+using OnlineExaminationSystem.Common.Enums;
 using System.ComponentModel.DataAnnotations;
 
 namespace OnlineExaminationSystem.Areas.Identity.Pages.Account

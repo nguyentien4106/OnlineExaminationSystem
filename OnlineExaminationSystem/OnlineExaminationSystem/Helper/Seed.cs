@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using OnlineExaminationSystem.Data;
-using OnlineExaminationSystem.Enums;
+using OnlineExaminationSystem.Common.Enums;
 
 namespace OnlineExaminationSystem.Helper
 {
@@ -40,9 +40,9 @@ namespace OnlineExaminationSystem.Helper
                 };
 
                 var result = await userManager.CreateAsync(user, "Ti100600@");
-                await userManager.AddToRoleAsync(user, Enums.Roles.Student.ToString());
-                await userManager.AddToRoleAsync(user, Enums.Roles.Admin.ToString());
-                await userManager.AddToRoleAsync(user, Enums.Roles.Teacher.ToString());
+                await userManager.AddToRoleAsync(user, Roles.Student.ToString());
+                await userManager.AddToRoleAsync(user, Roles.Admin.ToString());
+                await userManager.AddToRoleAsync(user, Roles.Teacher.ToString());
             }
         }
     }

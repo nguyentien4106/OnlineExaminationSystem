@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using OnlineExaminationSystem.Enums;
+using OnlineExaminationSystem.Common.Enums;
 using OnlineExaminationSystem.Models;
 using System.Diagnostics;
 

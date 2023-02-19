@@ -13,5 +13,9 @@ namespace OnlineExaminationSystem.Data
         {
         }
 
+        public DbSet<Question> Question { get; set; }
+
+        public DbSet<Answer> Answer { get; set; }
+        public DbSet<CDIO> CDIO { get; set; }
     }
 }

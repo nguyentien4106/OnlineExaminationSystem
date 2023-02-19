@@ -1,4 +1,4 @@
-﻿namespace OnlineExaminationSystem.Enums
+﻿namespace OnlineExaminationSystem.Common.Enums
 {
     public enum Level
     {

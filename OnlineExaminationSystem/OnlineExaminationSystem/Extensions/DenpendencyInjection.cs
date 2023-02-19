@@ -11,7 +11,7 @@ namespace OnlineExaminationSystem.Extensions
         public static IServiceCollection AddServices(this IServiceCollection builder)
         {
             builder.AddScoped<IManageUserService, ManageUserService>();
-            builder.AddScoped<IQuestionService, QuestionService>();
+            builder.AddScoped<IManageQuestionService, ManageQuestionService>();
 
             return builder;
         }

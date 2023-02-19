@@ -1,5 +1,4 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using OnlineExaminationSystem.Enums;
 
 namespace OnlineExaminationSystem.Areas.Admin.Controllers
 {
