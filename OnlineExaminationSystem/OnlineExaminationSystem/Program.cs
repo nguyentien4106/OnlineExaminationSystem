@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-using OnlineExaminationSystem.Data;
+using OnlineExaminationSystem.Common.Data;
 using OnlineExaminationSystem.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);

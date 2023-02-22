@@ -5,7 +5,6 @@ using OnlineExaminationSystem.Areas.Admin.Service;
 using OnlineExaminationSystem.Common.Constant;
 using OnlineExaminationSystem.Common.Model;
 using OnlineExaminationSystem.Common.Model.DTO;
-using OnlineExaminationSystem.Data;
 
 namespace OnlineExaminationSystem.Controllers
 {
@@ -29,9 +28,9 @@ namespace OnlineExaminationSystem.Controllers
         // GET: ManageUser/Details/5
         public async Task<IActionResult> Details(string id)
         {
-            var user =  await _service.GetUser(id);
+            var user = await _service.GetUser(id);
 
-            if(user == null)
+            if (user == null)
             {
                 return NotFound();
             }
@@ -52,16 +51,14 @@ namespace OnlineExaminationSystem.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Email,Password,Roles")] UserModel userModel)
         {
-
             await _service.CreateUser(userModel);
             return RedirectToAction(nameof(Index));
-            
         }
 
         //GET: ManageUser/Edit/5
         public async Task<IActionResult> Edit(string id)
         {
-            if (id == null )
+            if (id == null)
             {
                 return NotFound();
             }
@@ -81,7 +78,6 @@ namespace OnlineExaminationSystem.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(string id, [Bind("FirstName,LastName,Email,PhoneNumber,Roles")] UserDTO user)
         {
-
             try
             {
                 await _service.UpdateUser(id, user);
@@ -89,7 +85,6 @@ namespace OnlineExaminationSystem.Controllers
             catch (DbUpdateConcurrencyException)
             {
                 return View(user);
-
             }
             return RedirectToAction(nameof(Index));
         }
@@ -110,7 +105,6 @@ namespace OnlineExaminationSystem.Controllers
             }
 
             return Result.Success;
-
         }
 
         //// POST: ManageUser/Delete/5

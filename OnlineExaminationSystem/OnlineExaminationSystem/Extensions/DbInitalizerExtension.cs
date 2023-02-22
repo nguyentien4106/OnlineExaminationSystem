@@ -1,5 +1,5 @@
 ﻿using Microsoft.AspNetCore.Identity;
-using OnlineExaminationSystem.Data;
+using OnlineExaminationSystem.Common.Data;
 using OnlineExaminationSystem.Helper;
 
 namespace OnlineExaminationSystem.Extensions

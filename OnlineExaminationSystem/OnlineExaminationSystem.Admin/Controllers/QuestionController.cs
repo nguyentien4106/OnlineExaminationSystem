@@ -1,18 +1,16 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using OnlineExaminationSystem.Areas.Admin.Service;
-using OnlineExaminationSystem.Data;
 
 namespace OnlineExaminationSystem.Areas.Admin.Controllers
 {
     [Area("Admin")]
     public class QuestionController : Controller
     {
-
         private IManageQuestionService _questionService;
 
-        public QuestionController(IManageQuestionService questionService) {
-
+        public QuestionController(IManageQuestionService questionService)
+        {
             _questionService = questionService;
         }
 

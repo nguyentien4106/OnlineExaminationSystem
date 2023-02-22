@@ -8,11 +8,9 @@
 //    [Area("Admin")]
 //    public class QuestionController : Controller
 //    {
-
 //        private IManageQuestionService _questionService;
 
 //        public QuestionController(IManageQuestionService questionService) {
-
 //            _questionService = questionService;
 //        }
 

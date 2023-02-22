@@ -52,10 +52,9 @@
 //        [ValidateAntiForgeryToken]
 //        public async Task<IActionResult> Create([Bind("Email,Password,Roles")] UserModel userModel)
 //        {
-
 //            await _service.CreateUser(userModel);
 //            return RedirectToAction(nameof(Index));
-            
+
 //        }
 
 //        //GET: ManageUser/Edit/5
@@ -81,7 +80,6 @@
 //        [ValidateAntiForgeryToken]
 //        public async Task<IActionResult> Edit(string id, [Bind("FirstName,LastName,Email,PhoneNumber,Roles")] UserDTO user)
 //        {
-
 //            try
 //            {
 //                await _service.UpdateUser(id, user);

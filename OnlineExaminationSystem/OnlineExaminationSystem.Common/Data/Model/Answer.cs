@@ -1,4 +1,4 @@
-﻿namespace OnlineExaminationSystem.Data.Model
+﻿namespace OnlineExaminationSystem.Common.Data.Model
 {
     public class Answer
     {

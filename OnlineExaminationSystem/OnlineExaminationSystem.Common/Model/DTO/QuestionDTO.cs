@@ -1,6 +1,4 @@
-﻿using OnlineExaminationSystem.Common.Enums;
-
-namespace OnlineExaminationSystem.Common.Model.DTO
+﻿namespace OnlineExaminationSystem.Common.Model.DTO
 {
     public class QuestionDTO
     {

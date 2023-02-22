@@ -1,6 +1,6 @@
-﻿using OnlineExaminationSystem.Common.Model;
+﻿using OnlineExaminationSystem.Common.Data;
+using OnlineExaminationSystem.Common.Model;
 using OnlineExaminationSystem.Common.Model.DTO;
-using OnlineExaminationSystem.Data;
 
 namespace OnlineExaminationSystem.Areas.Admin.Service
 {

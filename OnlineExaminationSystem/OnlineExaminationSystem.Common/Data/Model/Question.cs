@@ -1,6 +1,6 @@
 ﻿using OnlineExaminationSystem.Common.Enums;
 
-namespace OnlineExaminationSystem.Data.Model
+namespace OnlineExaminationSystem.Common.Data.Model
 {
     public class Question
     {

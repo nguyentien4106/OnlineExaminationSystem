@@ -1,5 +1,4 @@
-﻿@using OnlineExaminationSystem.Data;
-@using OnlineExaminationSystem.Data.Users;
+﻿@using OnlineExaminationSystem.Common.Data;
 @inject SignInManager<AppUser> SignInManager
 @{
     var hasExternalLogins = (await SignInManager.GetExternalAuthenticationSchemesAsync()).Any();

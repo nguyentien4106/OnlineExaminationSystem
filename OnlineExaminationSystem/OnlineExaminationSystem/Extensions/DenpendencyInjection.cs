@@ -1,8 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
-using OnlineExaminationSystem.Areas.Admin.Service;
+﻿using OnlineExaminationSystem.Areas.Admin.Service;
 using OnlineExaminationSystem.Areas.Admin.Service.Implement;
-using OnlineExaminationSystem.Data;
 
 namespace OnlineExaminationSystem.Extensions
 {

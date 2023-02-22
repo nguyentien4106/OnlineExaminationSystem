@@ -1,15 +1,14 @@
-﻿using OnlineExaminationSystem.Data;
-using OnlineExaminationSystem.Common.Enums;
-using OnlineExaminationSystem.Common.Model.DTO;
+﻿using AutoMapper;
 using Microsoft.EntityFrameworkCore;
-using AutoMapper;
+using OnlineExaminationSystem.Common.Data;
+using OnlineExaminationSystem.Common.Model.DTO;
 using OnlineExaminationSystem.Data.Model;
 
 namespace OnlineExaminationSystem.Areas.Admin.Service.Implement
 {
     public class ManageQuestionService : IManageQuestionService
     {
-        private ApplicationDbContext _context;
+        private readonly ApplicationDbContext _context;
         private readonly IMapper _mapper;
 
         public ManageQuestionService(ApplicationDbContext context, IMapper mapper)
@@ -25,14 +24,15 @@ namespace OnlineExaminationSystem.Areas.Admin.Service.Implement
             var questionsDTO = _mapper.Map<List<QuestionDTO>>(questions);
 
             return questionsDTO;
-
         }
 
-        public Task CreateQuestion(QuestionDTO questionDTO)
+        public async Task CreateQuestion(QuestionDTO questionDTO)
         {
             var question = _mapper.Map<Question>(questionDTO);
 
-            return question;
+            await _context.Question.AddAsync(question);
+
+            await _context.SaveChangesAsync();
         }
     }
 }

@@ -1,11 +1,11 @@
-﻿using OnlineExaminationSystem.Common.Model.DTO;
+﻿//using OnlineExaminationSystem.Common.Model.DTO;
 
-namespace OnlineExaminationSystem.Areas.Admin.Service
-{
-    public interface IManageQuestionService
-    {
-        Task<List<QuestionDTO>> GetAllQuestions();
+//namespace OnlineExaminationSystem.Areas.Admin.Service
+//{
+//    public interface IManageQuestionService
+//    {
+//        Task<List<QuestionDTO>> GetAllQuestions();
 
-        Task CreateQuestion(QuestionDTO questionDTO);
-    }
-}
+//        Task CreateQuestion(QuestionDTO questionDTO);
+//    }
+//}

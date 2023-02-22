@@ -11,7 +11,6 @@ namespace OnlineExaminationSystem.Areas.Admin.Controllers
     {
         private readonly IManageQuestionService _service;
 
-
         public ManageQuestionController(IManageQuestionService service)
         {
             _service = service;
@@ -20,7 +19,6 @@ namespace OnlineExaminationSystem.Areas.Admin.Controllers
         // GET: Admin/ManageQuestion
         public async Task<IActionResult> Index()
         {
-
             return View(await _service.GetAllQuestions());
         }
 

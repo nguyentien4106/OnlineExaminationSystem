@@ -1,9 +1,8 @@
 ﻿using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using OnlineExaminationSystem.Common.Data;
 using OnlineExaminationSystem.Common.Model;
 using OnlineExaminationSystem.Common.Model.DTO;
-using OnlineExaminationSystem.Data;
 
 namespace OnlineExaminationSystem.Areas.Admin.Service.Implement
 {
@@ -96,7 +95,7 @@ namespace OnlineExaminationSystem.Areas.Admin.Service.Implement
         {
             var user = await _context.Users.Where(u => u.Id == id).FirstOrDefaultAsync();
 
-            if(user != null)
+            if (user != null)
             {
                 await _userManager.DeleteAsync(user);
 
@@ -110,12 +109,11 @@ namespace OnlineExaminationSystem.Areas.Admin.Service.Implement
         {
             var appUser = _context.Users.FirstOrDefault(u => u.Id == id);
 
-            if(appUser != null)
+            if (appUser != null)
             {
                 Update(appUser, user);
                 await _userManager.UpdateAsync(appUser);
             }
-            
         }
 
         private void Update(AppUser appUser, UserDTO user)
@@ -126,7 +124,11 @@ namespace OnlineExaminationSystem.Areas.Admin.Service.Implement
             appUser.PhoneNumber = user.PhoneNumber;
             appUser.Email = user.Email;
             appUser.Grade = user.Grade;
+        }
 
+        Task<AppUser> IManageUserService.DeleteUser(string id)
+        {
+            throw new NotImplementedException();
         }
     }
 }

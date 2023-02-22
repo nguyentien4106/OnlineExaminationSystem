@@ -7,7 +7,7 @@ namespace OnlineExaminationSystem.Profile
     {
         public QuestionProfile()
         {
-            CreateMap<Question, QuestionDTO>().f;
+            CreateMap<Question, QuestionDTO>();
             CreateMap<QuestionDTO, Question>();
         }
     }

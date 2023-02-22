@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using OnlineExaminationSystem.Data;
+using OnlineExaminationSystem.Common.Data;
 using OnlineExaminationSystem.Common.Enums;
 using System.ComponentModel.DataAnnotations;
 
