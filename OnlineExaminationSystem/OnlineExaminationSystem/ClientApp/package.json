@@ -1,7 +1,10 @@
 {
-  "name": "OnlineExaminationSystem",
+  "name": "onlineexaminationsystem",
   "description": "ASP.NET Core MVC project with npm and webpack front-end configuration.",
-  "repository": "https://gitlab.com/kdg-ti/integratieproject-1/guides/net6npmwebpack",
+  "repository": {
+    "type": "git",
+    "url": "git+https://gitlab.com/kdg-ti/integratieproject-1/guides/net6npmwebpack.git"
+  },
   "license": "MIT",
   "version": "4.0.0",
   "dependencies": {
@@ -18,6 +21,19 @@
     "style-loader": "^3.3.1"
   },
   "scripts": {
-    "build": "webpack"
-  }
+    "build": "webpack",
+    "clean": "rimraf build",
+    "prestart": "npm run clean",
+    "start": "webpack --config webpack.admin.config.js",
+    "poststart": "webpack --watch --config webpack.admin.config.js"
+  },
+  "bugs": {
+    "url": "https://gitlab.com/kdg-ti/integratieproject-1/guides/net6npmwebpack/issues"
+  },
+  "homepage": "https://gitlab.com/kdg-ti/integratieproject-1/guides/net6npmwebpack#readme",
+  "main": "webpack.admin.config.js",
+  "directories": {
+    "test": "test"
+  },
+  "author": ""
 }

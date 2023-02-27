@@ -1,12 +1,12 @@
 ﻿const path = require('path');
 
 module.exports = {
-    entry: {
-        site: './src/js/site.js'
-    },
+    entry: [
+        './src/js/manageUser/index.js'
+    ],
     output: {
         filename: '[name].entry.js',
-        path: path.resolve(__dirname, '..', 'wwwroot', 'dist')
+        path: path.resolve(__dirname, '..', 'wwwroot', 'admin')
     },
     devtool: 'source-map',
     mode: 'development',
