@@ -1,4 +1,6 @@
-﻿using OnlineExaminationSystem.Areas.Admin.Service;
+﻿using OnlineExaminationSystem.Admin.Service;
+using OnlineExaminationSystem.Admin.Service.Implement;
+using OnlineExaminationSystem.Areas.Admin.Service;
 using OnlineExaminationSystem.Areas.Admin.Service.Implement;
 
 namespace OnlineExaminationSystem.Extensions
@@ -9,6 +11,7 @@ namespace OnlineExaminationSystem.Extensions
         {
             builder.AddScoped<IManageUserService, ManageUserService>();
             builder.AddScoped<IManageQuestionService, ManageQuestionService>();
+            builder.AddScoped<IManageCDIOService, ManageCDIOService>();
 
             return builder;
         }

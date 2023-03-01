@@ -1,8 +1,7 @@
 ﻿using AutoMapper;
 using Microsoft.EntityFrameworkCore;
 using OnlineExaminationSystem.Common.Data;
-using OnlineExaminationSystem.Common.Model.DTO;
-using OnlineExaminationSystem.Data.Model;
+using OnlineExaminationSystem.Common.Data.Model;
 
 namespace OnlineExaminationSystem.Areas.Admin.Service.Implement
 {
@@ -17,16 +16,14 @@ namespace OnlineExaminationSystem.Areas.Admin.Service.Implement
             _mapper = mapper;
         }
 
-        public async Task<List<QuestionDTO>> GetAllQuestions()
+        public async Task<List<Question>> GetAllQuestions()
         {
             var questions = await _context.Question.Include(item => item.Answers).Include(item => item.CDIOs).ToListAsync();
 
-            var questionsDTO = _mapper.Map<List<QuestionDTO>>(questions);
-
-            return questionsDTO;
+            return questions;
         }
 
-        public async Task CreateQuestion(QuestionDTO questionDTO)
+        public async Task CreateQuestion(Question questionDTO)
         {
             var question = _mapper.Map<Question>(questionDTO);
 

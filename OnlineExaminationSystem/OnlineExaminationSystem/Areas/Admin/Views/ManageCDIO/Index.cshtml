@@ -1,0 +1,49 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@model OnlineExaminationSystem.Admin.ViewModel.ManageCDIO.CDIOViewModel
+@{
+}
+
+<h1>Index</h1>
+<a class="btn btn-primary" asp-action="Create">Create</a>
+
+
+<input type="text" placeholder="Search in table..." id="searchField">
+<table class="table" id="table">
+@*    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Name</th>
+            <th scope="col">Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        @{
+            if(Model.CDIOs.Count == 0)
+            {
+                <tr>No data</tr>
+            }
+            else
+            {
+                var index = 1;
+                foreach(var item in Model.CDIOs)
+                {
+                    <tr>
+                        <td scope="row">@index</td>
+                        <td>@item.Name</td>
+                        <td>
+                            <a class="btn btn-warning"></a>
+                        </td>
+                    </tr>
+                    index++;
+                }
+            }
+        }
+       
+    </tbody>*@
+</table>
+@section Scripts{
+    <script src="~/js/core/table-sortable.js"></script>
+    <script src="~/admin/main.js"></script>
+}

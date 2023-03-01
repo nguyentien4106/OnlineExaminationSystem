@@ -9,11 +9,11 @@ using OnlineExaminationSystem.Common.Data;
 
 #nullable disable
 
-namespace OnlineExaminationSystem.Migrations
+namespace OnlineExaminationSystem.Common.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20230219090046_AddQuestionModel")]
-    partial class AddQuestionModel
+    [Migration("20230301093556_addsubjectcdio")]
+    partial class addsubjectcdio
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -161,7 +161,7 @@ namespace OnlineExaminationSystem.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
-            modelBuilder.Entity("OnlineExaminationSystem.Data.AppUser", b =>
+            modelBuilder.Entity("OnlineExaminationSystem.Common.Data.AppUser", b =>
                 {
                     b.Property<string>("Id")
                         .HasColumnType("nvarchar(450)");
@@ -238,7 +238,7 @@ namespace OnlineExaminationSystem.Migrations
                     b.ToTable("AspNetUsers", (string)null);
                 });
 
-            modelBuilder.Entity("OnlineExaminationSystem.Data.Model.Answer", b =>
+            modelBuilder.Entity("OnlineExaminationSystem.Common.Data.Model.Answer", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -257,9 +257,10 @@ namespace OnlineExaminationSystem.Migrations
                     b.ToTable("Answer");
                 });
 
-            modelBuilder.Entity("OnlineExaminationSystem.Data.Model.CDIO", b =>
+            modelBuilder.Entity("OnlineExaminationSystem.Common.Data.Model.CDIO", b =>
                 {
                     b.Property<string>("Id")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("Name")
@@ -268,6 +269,9 @@ namespace OnlineExaminationSystem.Migrations
                     b.Property<Guid?>("QuestionId")
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<string>("Subject")
+                        .HasColumnType("nvarchar(max)");
+
                     b.HasKey("Id");
 
                     b.HasIndex("QuestionId");
@@ -275,7 +279,7 @@ namespace OnlineExaminationSystem.Migrations
                     b.ToTable("CDIO");
                 });
 
-            modelBuilder.Entity("OnlineExaminationSystem.Data.Model.Question", b =>
+            modelBuilder.Entity("OnlineExaminationSystem.Common.Data.Model.Question", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -312,7 +316,7 @@ namespace OnlineExaminationSystem.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
                 {
-                    b.HasOne("OnlineExaminationSystem.Data.AppUser", null)
+                    b.HasOne("OnlineExaminationSystem.Common.Data.AppUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -321,7 +325,7 @@ namespace OnlineExaminationSystem.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
                 {
-                    b.HasOne("OnlineExaminationSystem.Data.AppUser", null)
+                    b.HasOne("OnlineExaminationSystem.Common.Data.AppUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -336,7 +340,7 @@ namespace OnlineExaminationSystem.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("OnlineExaminationSystem.Data.AppUser", null)
+                    b.HasOne("OnlineExaminationSystem.Common.Data.AppUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -345,30 +349,30 @@ namespace OnlineExaminationSystem.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
                 {
-                    b.HasOne("OnlineExaminationSystem.Data.AppUser", null)
+                    b.HasOne("OnlineExaminationSystem.Common.Data.AppUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("OnlineExaminationSystem.Data.Model.Answer", b =>
+            modelBuilder.Entity("OnlineExaminationSystem.Common.Data.Model.Answer", b =>
                 {
-                    b.HasOne("OnlineExaminationSystem.Data.Model.Question", null)
+                    b.HasOne("OnlineExaminationSystem.Common.Data.Model.Question", null)
                         .WithMany("Answers")
                         .HasForeignKey("QuestionId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("OnlineExaminationSystem.Data.Model.CDIO", b =>
+            modelBuilder.Entity("OnlineExaminationSystem.Common.Data.Model.CDIO", b =>
                 {
-                    b.HasOne("OnlineExaminationSystem.Data.Model.Question", null)
+                    b.HasOne("OnlineExaminationSystem.Common.Data.Model.Question", null)
                         .WithMany("CDIOs")
                         .HasForeignKey("QuestionId");
                 });
 
-            modelBuilder.Entity("OnlineExaminationSystem.Data.Model.Question", b =>
+            modelBuilder.Entity("OnlineExaminationSystem.Common.Data.Model.Question", b =>
                 {
                     b.Navigation("Answers");
 

@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using OnlineExaminationSystem.Areas.Admin.Service;
-using OnlineExaminationSystem.Common.Model.DTO;
+using OnlineExaminationSystem.Common.Data.Model;
 
 namespace OnlineExaminationSystem.Areas.Admin.Controllers
 {
@@ -51,7 +51,7 @@ namespace OnlineExaminationSystem.Areas.Admin.Controllers
         //// For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Level,Code,Content,AnswerKey,Subject")] QuestionDTO question)
+        public async Task<IActionResult> Create([Bind("Level,Code,Content,AnswerKey,Subject")] Question question)
         {
             //if (ModelState.IsValid)
             //{

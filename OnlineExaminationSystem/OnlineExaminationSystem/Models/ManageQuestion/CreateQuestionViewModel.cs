@@ -1,6 +1,6 @@
 ﻿using Microsoft.Build.Framework;
+using OnlineExaminationSystem.Common.Data.Model;
 using OnlineExaminationSystem.Common.Enums;
-using OnlineExaminationSystem.Data.Model;
 
 namespace OnlineExaminationSystem.Models.ManageQuestion
 {

@@ -2,10 +2,12 @@
 
 module.exports = {
     entry: [
-        './src/js/manageUser/index.js'
+        './src/js/manageUser/index.js',
+        './src/js/manageCDIO/index.js',
+
     ],
     output: {
-        filename: '[name].entry.js',
+        filename: '[name].js',
         path: path.resolve(__dirname, '..', 'wwwroot', 'admin')
     },
     devtool: 'source-map',
